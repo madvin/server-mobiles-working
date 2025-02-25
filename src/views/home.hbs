@@ -1,0 +1,27 @@
+<h1>Data Table</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Bulgaria</th>
+            <th>Macedonia</th>
+            <th>Serbia</th>
+            <th>Romania</th>
+            <th>Greece</th>
+            <th>Part No.</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each mobiles}}
+        <tr>
+            <td>{{this.date}}</td>
+            <td>{{this.bulgaria}}</td>
+            <td>{{this.macedonia}}</td>
+            <td>{{this.serbia}}</td>
+            <td>{{this.romania}}</td>
+            <td>{{this.greece}}</td>
+            <td>{{this.partNo}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
