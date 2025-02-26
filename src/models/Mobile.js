@@ -3,7 +3,6 @@ import { Schema, model } from 'mongoose';
 const mobileSchema = new Schema({
     date: {
         type: String,
-        required: true,
     },
     bulgaria: { 
         type: Number, 
@@ -12,25 +11,25 @@ const mobileSchema = new Schema({
         max: 100000 
     },
     macedonia: { 
-        type: Number,  
+        type: String,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     serbia: { 
-        type: Number,  
+        type: String,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     romania: { 
-        type: Number,  
+        type: String,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     greece: { 
-        type: Number, 
+        type: String, 
         default: 0, 
         min: 0, 
         max: 100000
