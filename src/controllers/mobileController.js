@@ -14,10 +14,10 @@ mobileController.post('/create', isAuth, getDate, async (req, res) => {
     const today = req.today;
 
     try {
-        await mobileService.createMobile({ today, ...mobileData });
-        res.redirect('/');
+        await mobileService.createMobile({ date: today, ...mobileData });
+        res.render('/');
     } catch (err) {
-        return res.redirect('/create', { mobile: req.body, error: getErrorMessage(err) });
+        return res.render('mobiles/create', { mobile: req.body, error: getErrorMessage(err) });
     }
 });
 
