@@ -11,25 +11,25 @@ const mobileSchema = new Schema({
         max: 100000 
     },
     macedonia: { 
-        type: String,  
+        type: Number,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     serbia: { 
-        type: String,  
+        type: Number,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     romania: { 
-        type: String,  
+        type: Number,  
         default: 0, 
         min: 0, 
         max: 100000 
     },
     greece: { 
-        type: String, 
+        type: Number, 
         default: 0, 
         min: 0, 
         max: 100000
