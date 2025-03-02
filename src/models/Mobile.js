@@ -40,6 +40,10 @@ const mobileSchema = new Schema({
         minLength: [5, "Part Number should be at least 5 characters long!"],
         maxLength: [22, "Part Number should be less than 20 characters long!"],
     },
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
 });
 
 const Mobile = model('Mobile', mobileSchema);

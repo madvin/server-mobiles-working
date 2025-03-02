@@ -4,6 +4,7 @@ export default {
     async createMobile(mobileData) {
         try {
             const mobile = await Mobile.create(mobileData);
+            console.log(mobile);            
             return mobile;
         } catch(error) {
             throw new Error ('Cannot write data!' + error.message)
