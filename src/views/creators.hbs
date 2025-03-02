@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Creators</title>
+</head>
+<body>
+    <h1>Mobile Creators</h1>
+    <ul>
+        {{#each creators}}
+        <li>
+            <h2>{{name}}</h2>
+            <ul>
+                {{#each mobiles}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </li>
+        {{/each}}
+    </ul>
+</body>
+</html>

@@ -31,5 +31,8 @@ export default {
         const token = jwt.sign(payload, SECRET, { expiresIn: '1h' });
 
         return token;
+    },
+    async getAllUsers() {
+        return User.find();
     }
 }; 
