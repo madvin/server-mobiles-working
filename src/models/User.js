@@ -16,6 +16,10 @@ const userSchema = new Schema({
         minLength: [6, 'Password should be at least 6 characters!'],
         trim: true,
     },
+    mobiles: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Mobile',
+    }],
 });
 
 userSchema.virtual('rePassword')

@@ -10,14 +10,14 @@
     <ul>
         {{#each creators}}
             <li>
-                <h2>{{name}}</h2>
+                <h2>{{this.username}}</h2>
                 <ul>
-                    {{#each mobiles}}
-                        <li>{{this.bulgaria}}</li>
+                    {{#each this.user.mobiles}}
+                        <li>{{this.mobiles}}</li>
                     {{/each}}
                 </ul>
             </li>
         {{/each}}
-
+    </ul>
 </body>
 </html>
