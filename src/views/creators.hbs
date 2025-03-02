@@ -7,20 +7,17 @@
 </head>
 <body>
     <h1>Creators and Their Mobiles</h1>
-    {{#each creators}}
-        <div class="creator">
-            <h2>{{this.name}}</h2>
-            <ul>
-                {{#each this.mobiles}}
-                    <li>{{this.bulgaria}}</li>
-                    <li>{{this.macedonia}}</li>
-                    <li>{{this.serbia}}</li>
-                    <li>{{this.romania}}</li>
-                    <li>{{this.greece}}</li>
-                    <li>{{this.partNo}}</li>
-                {{/each}}
-            </ul>
-        </div>
-    {{/each}}
+    <ul>
+        {{#each creators}}
+            <li>
+                <h2>{{name}}</h2>
+                <ul>
+                    {{#each mobiles}}
+                        <li>{{this.bulgaria}}</li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/each}}
+
 </body>
 </html>
