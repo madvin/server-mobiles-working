@@ -8,14 +8,9 @@
 <body>
     <h1>Creators and Their Mobiles</h1>
     <ul>
-        {{#each creators}}
+        {{#each mobiles}}
             <li>
-                <h2>{{this.username}}</h2>
-                <ul>
-                    {{#each this.user.mobiles}}
-                        <li>{{this.mobiles}}</li>
-                    {{/each}}
-                </ul>
+                <h2>{{this.creator}}</h2>
             </li>
         {{/each}}
     </ul>
