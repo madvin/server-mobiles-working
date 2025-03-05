@@ -12,19 +12,20 @@ mobileController.get("/create", isAuth, getDate, (req, res) => {
 mobileController.post("/create", isAuth, getDate, async (req, res) => {
   const mobileData = req.body;
   const today = req.today;
-  const creator = req.user.id;
-  console.log(creator);
+  const userId = req.user?.id;
+
+ 
   
 
   try {
-    await mobileService.createMobile({ date: today, ...mobileData, creator });
-    return res.redirect("/");
+    await mobileService.createMobile({ date: today, ...mobileData, userId });
   } catch (err) {
-    return res.redirect("/create", {
-      mobile: req.body,
+    return res.render('mobiles/create', {
+      mobile: mobileData,
       error: getErrorMessage(err),
     });
   }
+  res.redirect('/');
 });
 
 export default mobileController;
