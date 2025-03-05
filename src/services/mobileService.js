@@ -52,5 +52,17 @@ export default {
         } catch (error) {
             throw new Error('Error fetching mobiles: ' + error.message);
         }
+    },
+    async getMobileByDate(date) {
+        try {
+            const mobiles = await Mobile.find({ date: date });
+            if (!mobiles.length) {
+                throw new Error('No mobiles found for the given date');
+            }
+            return mobiles;
+        } catch (error) {
+            throw new Error('Error fetching mobile by date: ' + error.message);
+        }
     }
+    
 }
