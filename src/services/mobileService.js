@@ -1,14 +1,12 @@
 import Mobile from '../models/Mobile.js';
 
 export default {
-    async createMobile(mobileData) {
-        try {
-            const mobile = await Mobile.create(mobileData);
-            console.log(mobile);            
-            return mobile;
-        } catch(error) {
-            throw new Error ('Cannot write data!' + error.message)
-        }
+    createMobile(mobileData, userId) {
+        const result = Mobile.create({
+            ...mobileData,
+            creator: userId,
+        })
+        return result
     },
     async getMobileById(id) {
         try {
@@ -48,7 +46,35 @@ export default {
     async getAll() {
         try {
             const mobiles = await Mobile.find();
-            return mobiles;
+    
+            // Group data by date & partNo
+            const groupedMobiles = mobiles.reduce((acc, mobile) => {
+                const { date, partNo, bulgaria, macedonia, serbia, romania, greece } = mobile;
+                const key = `${date}-${partNo}`; // Unique key based on date & partNo
+                
+                if (!acc[key]) {
+                    acc[key] = {
+                        date,
+                        partNo,
+                        bulgaria: 0,
+                        macedonia: 0,
+                        serbia: 0,
+                        romania: 0,
+                        greece: 0
+                    };
+                }
+    
+                // Merge numerical values by adding them
+                acc[key].bulgaria += bulgaria ? Number(bulgaria) : 0;
+                acc[key].macedonia += macedonia ? Number(macedonia) : 0;
+                acc[key].serbia += serbia ? Number(serbia) : 0;
+                acc[key].romania += romania ? Number(romania) : 0;
+                acc[key].greece += greece ? Number(greece) : 0;
+    
+                return acc;
+            }, {});
+    
+            return Object.values(groupedMobiles);
         } catch (error) {
             throw new Error('Error fetching mobiles: ' + error.message);
         }
