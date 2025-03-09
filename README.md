@@ -1,1 +1,1 @@
-This progect use Express and mongoDB
+This project use Express and mongoDB
