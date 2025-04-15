@@ -8,6 +8,7 @@ creator.get('/creators', async (req, res) => {
   const mobiles = await mobileService.getAll();
 
   res.render('creators', { mobiles });
+  console.log(mobiles);
 });
 
 export default creator;

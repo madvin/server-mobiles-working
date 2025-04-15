@@ -1,10 +1,9 @@
 import Mobile from '../models/Mobile.js';
 
 export default {
-    createMobile(mobileData, userId) {
+    createMobile(mobileData) {
         const result = Mobile.create({
             ...mobileData,
-            creator: userId,
         })
         return result
     },

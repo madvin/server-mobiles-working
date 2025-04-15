@@ -15,7 +15,7 @@ mobileController.post("/create", isAuth, getDate, async (req, res) => {
   const userId = req.user?.id;
 
   try {
-    await mobileService.createMobile({ date: today, ...mobileData, userId });
+    await mobileService.createMobile({ date: today, ...mobileData, creator: userId });
   } catch (err) {
     return res.render('mobiles/create', {
       mobile: mobileData,
