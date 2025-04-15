@@ -4,11 +4,10 @@ import mobileService from "../services/mobileService.js";
 
 const creator = Router();
 
-creator.get("/creators", async (req, res) => {
-  const creators = await authService.getAllUsers();
+creator.get('/creators', async (req, res) => {
   const mobiles = await mobileService.getAll();
 
-  res.render("creators", { creators, mobiles });
+  res.render('creators', { mobiles });
 });
 
 export default creator;

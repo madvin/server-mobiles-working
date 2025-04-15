@@ -45,17 +45,18 @@ export default {
 
     async getAll() {
         try {
-            const mobiles = await Mobile.find();
+            const mobiles = await Mobile.find().populate('creator');
     
             // Group data by date & partNo
             const groupedMobiles = mobiles.reduce((acc, mobile) => {
-                const { date, partNo, bulgaria, macedonia, serbia, romania, greece } = mobile;
+                const { date, partNo, bulgaria, macedonia, serbia, romania, greece} = mobile;
                 const key = `${date}-${partNo}`; // Unique key based on date & partNo
                 
                 if (!acc[key]) {
                     acc[key] = {
                         date,
                         partNo,
+                        creator: mobile.creator,
                         bulgaria: 0,
                         macedonia: 0,
                         serbia: 0,
