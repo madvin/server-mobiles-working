@@ -14,14 +14,14 @@
         {{/if}}
     <nav>
     <ul class="nav-links">
-        <li><a href="/">Table</a></li>
         {{#if user}}
+            <li><a href="/">Table</a></li>
             <li><a href="/mobiles/create">Create</a></li>
             <li><a href="/creators">Users</a></li>
+            <li><a href="/auth/register">Register</a></li>
             <li><a href="/auth/logout">Logout</a></li>
         {{else}}
             <li><a href="/auth/login">Login</a></li>
-            <li><a href="/auth/register">Register</a></li>
         {{/if}}
     </ul>
 
