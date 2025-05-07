@@ -5,7 +5,7 @@ import { getErrorMessage } from '../utils/errorHandler.js';
 
 const authController = Router();
 
-authController.get('/register', (req, res) => {
+authController.get('/register', isAuth, (req, res) => {
     res.render('auth/register');
 });
 
