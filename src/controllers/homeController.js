@@ -1,12 +1,19 @@
 import { Router } from 'express';
-import mobileService from '../services/mobileService.js'
+import mobileService from '../services/mobileService.js';
+import { isAuth } from '../middlewares/authMiddleware.js';
 
 const router = Router();
 
-router.get ('/', async (req, res) => {
-    const mobiles = await mobileService.getAll();
+router.get ('/', isAuth, async (req, res) => {
 
-    res.render('home', { mobiles });
+    if (isAuth) {
+        const mobiles = await mobileService.getAll();
+
+    return res.render('home', { mobiles });
+
+    }
+    res.redirect('auth/login')
+    
 });
 
 export default router;
