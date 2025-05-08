@@ -42,6 +42,15 @@ export default {
         }
     },
 
+    async getAllByCreator() {
+        try {
+            const mobile = Mobile.find().populate('creator');
+            return mobile;
+        } catch(error) {
+            throw new Error('Error fetching mobiles: ' + error.message);
+        }
+    },
+
     async getAll() {
         try {
             const mobiles = await Mobile.find().populate('creator');
@@ -92,3 +101,5 @@ export default {
     }
     
 }
+
+
