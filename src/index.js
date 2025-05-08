@@ -28,6 +28,8 @@ app.engine('hbs', handlebars.engine({
     }
 }));
 
+//TODO: Implement error container to app!
+
 
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
