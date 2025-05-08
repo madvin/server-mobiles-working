@@ -1,15 +1,28 @@
 import Mobile from '../models/Mobile.js';
+import User from '../models/User.js';
 
 export default {
-    createMobile(mobileData) {
-        const result = Mobile.create({
-            ...mobileData,
-        })
-        return result
+    async createMobile(mobileData) {
+        try {
+            const mobile = await Mobile.create({
+                ...mobileData
+            });
+
+            if (mobile.creator) {
+                await User.findByIdAndUpdate(mobile.creator, {
+                    $push: { mobiles: mobile._id }
+                });
+            }
+
+            return mobile;
+        } catch (error) {
+            throw new Error('Error creating mobile: ' + error.message);
+        }
     },
     async getMobileById(id) {
         try {
             const mobile = await Mobile.findById(id);
+            
             if (!mobile) {
                 throw new Error('Mobile not found');
             }
