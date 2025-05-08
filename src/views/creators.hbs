@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creators and Mobiles</title>
 </head>
+
 <body>
     <h1>Creators and Their Mobiles</h1>
-    <ul>
+    <table>
+        <tr>
+            <th>Creator</th>
+            <th>SerialNo</th>
+            <th>Bulgaria</th>
+            <th>Macedonia</th>
+            <th>Serbia</th>
+            <th>Romania</th>
+            <th>Greece</th>
+            <th>Date</th>
+        </tr>
         {{#each mobiles}}
-            <li>
-                <h2>{{> mobileObj}}</h2>
-            </li>
+        {{> mobileObj}}
         {{/each}}
-    </ul>
+    </table>
 </body>
+
 </html>
