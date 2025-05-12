@@ -1,8 +1,8 @@
-export const getErrorMessage = (err) => {
-    switch (err.name) {
+export const getErrorMessage = (error) => {
+    switch (error.name) {
         case 'ValidationError':
-            return Object.values(err.errors).at(0).message;
+            return Object.values(error.errors).at(0).message;
         default:
-            return err.message;
+            return error.message;
     }
 }

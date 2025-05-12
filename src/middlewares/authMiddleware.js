@@ -17,7 +17,7 @@ export const authMiddleware = (req, res, next) => {
         res.locals.user = decodedToken;
         
         next();
-    } catch(err) {
+    } catch(error) {
         res.setError('Invalid Authentication!');
         res.clearCookie('auth');
         res.redirect('/auth/login');
@@ -26,7 +26,7 @@ export const authMiddleware = (req, res, next) => {
 
 export const isAuth = (req, res, next) => {
     if (!req.user) {
-        res.setError('You must be logged in in order to do that!')
+        // res.setError('You must be logged in in order to do that!')
         return res.redirect('/auth/login');
     } 
 

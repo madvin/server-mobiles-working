@@ -6,13 +6,11 @@ const router = Router();
 
 router.get ('/', isAuth, async (req, res) => {
 
-    if (isAuth) {
-        const mobiles = await mobileService.getAll();
-
-    return res.render('home', { mobiles });
-
+    if (!isAuth) {
+        return res.render('login')
     }
-    res.redirect('auth/login')
+    const mobiles = await mobileService.getAll();
+    return res.render('home', { mobiles });
     
 });
 
