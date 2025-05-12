@@ -13,6 +13,7 @@
         </div>
         {{/if}}
     <nav>
+    <div class="nav-clock">{{time}}</div>
     <ul class="nav-links">
         {{#if user}}
             <li><a href="/">Table</a></li>
@@ -26,11 +27,6 @@
         {{/if}}
     </ul>
 
-    {{!-- {{#if user}}
-        <ul class="user-info">
-            <li>User: {{user.username}}</li>
-        </ul>
-    {{/if}} --}}
 </nav>
     <main>
         {{{body}}}

@@ -64,6 +64,12 @@ nav {
     font-weight: bold;
 }
 
+.nav-clock {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 .user-info {
     list-style: none;
     padding: 0;

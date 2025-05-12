@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import routes from './routes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import { tempData } from './middlewares/tempDataMiddleware.js';
+import time from './utils/time.js';
 
 const app = express();
 
@@ -28,8 +29,10 @@ app.engine('hbs', handlebars.engine({
     }
 }));
 
-//TODO: Implement error container to app!
-
+app.use((req, res, next) => {
+    res.locals.time = time();
+    next();
+});
 
 app.set('view engine', 'hbs');
 app.set('views', './src/views');
