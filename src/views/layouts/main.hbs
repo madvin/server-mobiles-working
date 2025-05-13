@@ -12,21 +12,20 @@
             <p>{{error}}</p>
         </div>
         {{/if}}
-    <nav>
-    <div class="nav-clock">Last refresh: {{time}}</div>
-    <ul class="nav-links">
-        {{#if user}}
-            <li><a href="/">Table</a></li>
-            <li><a href="/mobiles/create">Create</a></li>
-            <li><a href="/creators">Users</a></li>
-            <li><a href="/auth/register">Register</a></li>
-            <li><a href="/auth/logout">Logout</a></li>
-             <ul class="user-info">
-            <li>Hello, {{user.username}}</li>
-        </ul>
-        {{/if}}
-    </ul>
-
+<nav>
+  <div class="nav-clock"> <span id="live-clock"></span></div>
+  <ul class="nav-links">
+    {{#if user}}
+      <li><a href="/">Table</a></li>
+      <li><a href="/mobiles/create">Create</a></li>
+      <li><a href="/creators">Users</a></li>
+      <li><a href="/auth/register">Register</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+      <ul class="user-info">
+        <li>Hello, {{user.username}}</li>
+      </ul>
+    {{/if}}
+  </ul>
 </nav>
     <main>
         {{{body}}}
@@ -36,3 +35,16 @@
     </footer>
 </body>
 </html>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('live-clock').textContent = `${hours}:${minutes}:${seconds}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
