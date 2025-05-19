@@ -3,6 +3,7 @@ import handlebars from 'express-handlebars';
 import expressSession from 'express-session';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
+import port from '.env.PORT';
 
 import routes from './routes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
@@ -11,7 +12,8 @@ import time from './utils/time.js';
 
 const app = express();
 
-const port = 5000;
+const port = port;
+const
 
 try {
     const URI = 'mongodb://localhost:27017/Stantek-mobiles';
@@ -42,7 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
-    secret: 'koFOFKogksdm3226jkpolmsdpgmOGSPOGMgsdlgsmdg',
+    secret: ',
     resave: false,
     saveUninitialized: false,
     cookie: {
