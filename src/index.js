@@ -3,21 +3,20 @@ import handlebars from 'express-handlebars';
 import expressSession from 'express-session';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import port from '.env.PORT';
 
 import routes from './routes.js';
 import { authMiddleware } from './middlewares/authMiddleware.js';
 import { tempData } from './middlewares/tempDataMiddleware.js';
 import time from './utils/time.js';
 
+import 'dotenv/config';
+
+
 const app = express();
 
-const port = port;
-const
 
 try {
-    const URI = 'mongodb://localhost:27017/Stantek-mobiles';
-    await mongoose.connect(URI);
+    await mongoose.connect(process.env.DATABASE_URI);
     console.log('Database is connected!');
 } catch (err) {
     console.log('Cannot connect to the DB!');
@@ -44,7 +43,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(expressSession({
-    secret: ',
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -58,4 +57,4 @@ app.use(authMiddleware);
 
 app.use(routes);
 
-app.listen(`${port}`, () => console.log(`Server is listening on port: http://localhost:${port}...`));
+app.listen(`${process.env.HOST}:${process.env.PORT}`, () => console.log(`Server is listening on port: ${process.env.HOST}:${process.env.PORT}...`));

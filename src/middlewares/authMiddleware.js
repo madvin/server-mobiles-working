@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
+import 'dotenv/config';
 
-const SECRET = 'BASICSECRET';
+const SECRET = process.env.SECRET;
 
 
 export const authMiddleware = (req, res, next) => {
