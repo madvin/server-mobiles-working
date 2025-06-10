@@ -22,7 +22,7 @@ export default {
     async getMobileById(id) {
         try {
             const mobile = await Mobile.findById(id);
-            
+
             if (!mobile) {
                 throw new Error('Mobile not found');
             }
@@ -42,7 +42,7 @@ export default {
             throw new Error('Error updating mobile: ' + error.message);
         }
     },
-    
+
     async deleteMobile(id) {
         try {
             const mobile = await Mobile.findByIdAndDelete(id);
@@ -59,7 +59,7 @@ export default {
         try {
             const mobile = Mobile.find().populate('creator');
             return mobile;
-        } catch(error) {
+        } catch (error) {
             throw new Error('Error fetching mobiles: ' + error.message);
         }
     },
@@ -67,12 +67,12 @@ export default {
     async getAll() {
         try {
             const mobiles = await Mobile.find().populate('creator');
-    
+
             // Group data by date & partNo
             const groupedMobiles = mobiles.reduce((acc, mobile) => {
-                const { date, partNo, bulgaria, macedonia, serbia, romania, greece} = mobile;
+                const { date, partNo, bulgaria, macedonia, serbia, romania, greece } = mobile;
                 const key = `${date}-${partNo}`; // Unique key based on date & partNo
-                
+
                 if (!acc[key]) {
                     acc[key] = {
                         date,
@@ -85,43 +85,62 @@ export default {
                         greece: 0
                     };
                 }
-    
+
                 // Merge numerical values by adding them
                 acc[key].bulgaria += bulgaria ? Number(bulgaria) : 0;
                 acc[key].macedonia += macedonia ? Number(macedonia) : 0;
                 acc[key].serbia += serbia ? Number(serbia) : 0;
                 acc[key].romania += romania ? Number(romania) : 0;
                 acc[key].greece += greece ? Number(greece) : 0;
-    
+
                 return acc;
             }, {});
-    
+
             return Object.values(groupedMobiles);
         } catch (error) {
             throw new Error('Error fetching mobiles: ' + error.message);
         }
     },
-    async getMobileByDate(date) {
-        try {
-            const mobiles = await Mobile.find({ date: date });
-            if (!mobiles.length) {
-                throw new Error('No mobiles found for the given date');
-            }
-            return mobiles;
-        } catch (error) {
-            throw new Error('Error fetching mobile by date: ' + error.message);
-        }
-    },
 
-    async getMobilesByPartNo(partNo) {
+    async upsertMobileByPartNoAndDate(data) {
+        const { partNo, date, bulgaria = 0, macedonia = 0, serbia = 0, romania = 0, greece = 0, creator } = data;
+
         try {
-            const mobiles = await Mobile.find({ partNo: partNo });
-            if (!mobiles.length) {
-                throw new Error('No mobiles found for the given date');
+            const existing = await Mobile.findOne({ partNo, date });
+
+            if (existing) {
+                // Add numbers to the existing values
+                existing.bulgaria += Number(bulgaria);
+                existing.macedonia += Number(macedonia);
+                existing.serbia += Number(serbia);
+                existing.romania += Number(romania);
+                existing.greece += Number(greece);
+
+                const updated = await existing.save();
+                return { mobile: updated, isNew: false };
+            } else {
+                const mobile = await Mobile.create({
+                    partNo,
+                    date,
+                    bulgaria,
+                    macedonia,
+                    serbia,
+                    romania,
+                    greece,
+                    creator
+                });
+
+                // Link to user
+                if (creator) {
+                    await User.findByIdAndUpdate(creator, {
+                        $push: { mobiles: mobile._id }
+                    });
+                }
+
+                return { mobile, isNew: true };
             }
-            return mobiles;
         } catch (error) {
-            throw new Error('Error fetching mobile by PartNo: ' + error.message);
+            throw new Error('Error upserting mobile: ' + error.message);
         }
     }
 }

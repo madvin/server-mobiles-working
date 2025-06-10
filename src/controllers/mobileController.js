@@ -15,14 +15,22 @@ mobileController.post("/create", isAuth, getDate, async (req, res) => {
   const userId = req.user?.id;
 
   try {
-    await mobileService.createMobile({ date: today, ...mobileData, creator: userId });
+    const { mobile, isNew } = await mobileService.upsertMobileByPartNoAndDate({
+      ...mobileData,
+      date: today,
+      creator: userId
+    });
+
+    const message = isNew ? 'Mobile created successfully.' : 'Mobile updated with new values.';
+    console.log(message);
+    res.redirect('/'); // Or show a success message if needed
   } catch (err) {
-    return res.render('mobiles/create', {
+    return res.render("mobiles/create", {
       mobile: mobileData,
       error: getErrorMessage(err),
     });
   }
-  res.redirect('/');
 });
+
 
 export default mobileController;
