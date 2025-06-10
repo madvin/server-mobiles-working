@@ -23,7 +23,7 @@ mobileController.post("/create", isAuth, getDate, async (req, res) => {
 
     const message = isNew ? 'Mobile created successfully.' : 'Mobile updated with new values.';
     console.log(message);
-    res.redirect('/'); // Or show a success message if needed
+    res.redirect('/');
   } catch (err) {
     return res.render("mobiles/create", {
       mobile: mobileData,
