@@ -106,10 +106,9 @@ export default {
         const { partNo, date, bulgaria = 0, macedonia = 0, serbia = 0, romania = 0, greece = 0, creator } = data;
 
         try {
-            const existing = await Mobile.findOne({ partNo, date });
+            const existing = await Mobile.findOne({ partNo, date, creator });
 
             if (existing) {
-                // Add numbers to the existing values
                 existing.bulgaria += Number(bulgaria);
                 existing.macedonia += Number(macedonia);
                 existing.serbia += Number(serbia);
@@ -130,7 +129,7 @@ export default {
                     creator
                 });
 
-                // Link to user
+
                 if (creator) {
                     await User.findByIdAndUpdate(creator, {
                         $push: { mobiles: mobile._id }
