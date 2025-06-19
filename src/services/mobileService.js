@@ -57,50 +57,52 @@ export default {
 
     async getAllByCreator() {
         try {
-            const mobile = Mobile.find().populate('creator');
+            const mobile = Mobile.find()
+            .populate('creator')
+            .sort({ date: -1 });
             return mobile;
         } catch (error) {
             throw new Error('Error fetching mobiles: ' + error.message);
         }
     },
 
-    async getAll() {
-        try {
-            const mobiles = await Mobile.find().populate('creator');
+ async getAll() {
+    try {
+        const mobiles = await Mobile.find()
+            .populate('creator')
+            .sort({ date: -1 });
 
-            // Group data by date & partNo
-            const groupedMobiles = mobiles.reduce((acc, mobile) => {
-                const { date, partNo, bulgaria, macedonia, serbia, romania, greece } = mobile;
-                const key = `${date}-${partNo}`; // Unique key based on date & partNo
+        const groupedMobiles = mobiles.reduce((acc, mobile) => {
+            const { date, partNo, bulgaria, macedonia, serbia, romania, greece } = mobile;
+            const key = `${date}-${partNo}`;
 
-                if (!acc[key]) {
-                    acc[key] = {
-                        date,
-                        partNo,
-                        creator: mobile.creator,
-                        bulgaria: 0,
-                        macedonia: 0,
-                        serbia: 0,
-                        romania: 0,
-                        greece: 0
-                    };
-                }
+            if (!acc[key]) {
+                acc[key] = {
+                    date,
+                    partNo,
+                    creator: mobile.creator,
+                    bulgaria: 0,
+                    macedonia: 0,
+                    serbia: 0,
+                    romania: 0,
+                    greece: 0
+                };
+            }
 
-                // Merge numerical values by adding them
-                acc[key].bulgaria += bulgaria ? Number(bulgaria) : 0;
-                acc[key].macedonia += macedonia ? Number(macedonia) : 0;
-                acc[key].serbia += serbia ? Number(serbia) : 0;
-                acc[key].romania += romania ? Number(romania) : 0;
-                acc[key].greece += greece ? Number(greece) : 0;
+            acc[key].bulgaria += bulgaria ? Number(bulgaria) : 0;
+            acc[key].macedonia += macedonia ? Number(macedonia) : 0;
+            acc[key].serbia += serbia ? Number(serbia) : 0;
+            acc[key].romania += romania ? Number(romania) : 0;
+            acc[key].greece += greece ? Number(greece) : 0;
 
-                return acc;
-            }, {});
+            return acc;
+        }, {});
 
-            return Object.values(groupedMobiles);
-        } catch (error) {
-            throw new Error('Error fetching mobiles: ' + error.message);
-        }
-    },
+        return Object.values(groupedMobiles);
+    } catch (error) {
+        throw new Error('Error fetching mobiles: ' + error.message);
+    }
+},
 
     async upsertMobileByPartNoAndDate(data) {
         const { partNo, date, bulgaria = 0, macedonia = 0, serbia = 0, romania = 0, greece = 0, creator } = data;
