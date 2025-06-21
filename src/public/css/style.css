@@ -12,9 +12,12 @@ body {
     text-align: center;
 }
 
+html {
+    font-family: pacifico, sans-serif;
+}
+
 nav {
     background-color: #1976d2;
-    font-family: pacifico, sans-serif;
     position: fixed;
     width: 100%;
     top: 0;
