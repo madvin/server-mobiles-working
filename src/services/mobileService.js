@@ -63,7 +63,7 @@ export default {
             .populate('mobiles')
             .sort({ date: -1 });
         } catch(error) {
-            throw new Error('Cannot find this user: ' + error.message);
+            throw new Error('Cannot fetch data: ' + error.message);
         }
 
     },
