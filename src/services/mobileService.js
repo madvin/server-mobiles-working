@@ -55,6 +55,19 @@ export default {
         }
     },
 
+    async getAllPhonesOfUser(userId) {
+        const user = await User.findOneById(userId);
+
+        try {
+            user
+            .populate('mobiles')
+            .sort({ date: -1 });
+        } catch(error) {
+            throw new Error('Cannot find this user: ' + error.message);
+        }
+
+    },
+
     async getAllByCreator() {
         try {
             const mobile = Mobile.find()
