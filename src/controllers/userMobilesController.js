@@ -18,6 +18,8 @@ userMobilesController.post('/usermobiles', isAuth, async (req, res) => {
     // TODO: implement the logic of the controller!
 
 
-})
+});
+
+export default userMobilesController;
 
 
