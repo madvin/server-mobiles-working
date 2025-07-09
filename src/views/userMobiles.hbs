@@ -1,8 +1,37 @@
-<h1>Find User</h1>
-<form method="POST">
+<h1>User Mobiles</h1>
 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    
-    <button type="submit">Find</button>
-</form>
+{{#if user}}
+    <h2>Mobiles owned by {{user.username}}</h2>
+
+    {{#if mobiles.length}}
+        <ul class="mobile-list">
+            {{#each mobiles}}
+                <li class="mobile-item">
+                    <strong>{{brand}}</strong> - {{model}}<br>
+                    Released: {{releaseDate}}<br>
+                    Price: ${{price}}
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        <p>No mobiles found for this user.</p>
+    {{/if}}
+
+    <form method="POST">
+        <button type="submit">Search Another User</button>
+    </form>
+
+{{else}}
+    <h2>Find User</h2>
+
+    {{#if error}}
+        <p class="error">{{error}}</p>
+    {{/if}}
+
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="userName" required>
+
+        <button type="submit">Find</button>
+    </form>
+{{/if}}
