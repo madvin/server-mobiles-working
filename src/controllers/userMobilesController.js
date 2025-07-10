@@ -22,7 +22,8 @@ userMobilesController.post('/', isAuth, async (req, res) => {
                 error: 'User not found',
                 user: null,
                 mobiles: [],
-                mobileCount: 0
+                mobileCount: 0,
+                submittedUsername: username
             });
         }
 
@@ -36,10 +37,20 @@ userMobilesController.post('/', isAuth, async (req, res) => {
             date: { $gte: dateLimitStr }
         }).sort({ date: -1 });
 
+        const totalMobileCount = mobiles.reduce((total, mobile) => {
+            return total +
+                (mobile.bulgaria || 0) +
+                (mobile.macedonia || 0) +
+                (mobile.serbia || 0) +
+                (mobile.romania || 0) +
+                (mobile.greece || 0);
+        }, 0);
+
         res.render('userMobiles', {
             user,
             mobiles,
-            mobileCount: mobiles.length
+            mobileCount: totalMobileCount,
+            submittedUsername: username
         });
 
     } catch (err) {
@@ -47,10 +58,10 @@ userMobilesController.post('/', isAuth, async (req, res) => {
             error: getErrorMessage(err),
             user: null,
             mobiles: [],
-            mobileCount: 0
+            mobileCount: 0,
+            submittedUsername: username
         });
     }
 });
-
 
 export default userMobilesController;
