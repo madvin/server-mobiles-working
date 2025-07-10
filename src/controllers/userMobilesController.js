@@ -7,11 +7,11 @@ import Mobile from "../models/Mobile.js";
 
 const userMobilesController = Router();
 
-userMobilesController.get('/usermobiles', isAuth, (req, res) => {
+userMobilesController.get('/', isAuth, (req, res) => {
     res.render('userMobiles')
 });
 
-userMobilesController.post('/usermobiles', isAuth, async (req, res) => {
+userMobilesController.post('/', isAuth, async (req, res) => {
     try {
         const { username } = req.body;
 
