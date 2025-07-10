@@ -16,7 +16,24 @@ userMobilesController.post('/usermobiles', isAuth, async (req, res) => {
 
     const user = await User.findOne({ userName }).populate('mobiles').exec();
 
-    // TODO: implement the logic of the controller!
+userMobilesController.post('/usermobiles', isAuth, async (req, res) => {
+    try {
+        const { userName } = req.body;
+        const user = await User.findOne({ username: userName }).populate('mobiles').exec();
+
+        if (!user) {
+            return res.status(404).render('userMobiles', { error: 'User not found', mobiles: [] });
+        }
+
+        res.render('userMobiles', { mobiles: user.mobiles, user });
+    } catch (err) {
+        res.status(500).render('userMobiles', {
+            error: getErrorMessage(err),
+            mobiles: [],
+        });
+    }
+});
+
 
 
 });
