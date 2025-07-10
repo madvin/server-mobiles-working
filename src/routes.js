@@ -10,7 +10,7 @@ const routes = Router();
 
 routes.use(homeController);
 routes.use(creatorController);
-routes.use(userMobilesController);
+routes.use('/usermobiles', userMobilesController);
 routes.use('/mobiles', mobileController);
 routes.use('/auth', authController);
 
