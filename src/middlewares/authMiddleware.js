@@ -14,6 +14,13 @@ export const authMiddleware = (req, res, next) => {
     try {
         const decodedToken = jwt.verify(token, SECRET);
 
+        if (decodedToken.username) {
+            decodedToken.username =
+                decodedToken
+                .username
+                .charAt(0)
+                .toUpperCase() + decodedToken.username.slice(1);
+        }
         req.user = decodedToken;
         res.locals.user = decodedToken;
         
