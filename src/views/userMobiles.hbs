@@ -18,7 +18,18 @@
     <p class="error">{{error}}</p>
 {{/if}}
 
-{{#if user}}
-    <h1>Total mobiles in last 30 days: <strong>{{mobileCount}}</strong></h1>
+{{#if searchedUser}}
+    <h2>Mobiles for {{searchedUser.username}}</h2>
+    <h3>Total mobiles in last 30 days: <strong>{{mobileCount}}</strong></h3>
+
+    
+    {{!-- {{#each mobiles}}
+        <div class="mobile">
+            <p>Date: {{this.date}}</p>
+            <p>Bulgaria: {{this.bulgaria}}</p>
+            <p>Macedonia: {{this.macedonia}}</p>
+          
+        </div>
+    {{/each}} --}}
 {{/if}}
 </body>

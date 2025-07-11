@@ -8,19 +8,20 @@ import Mobile from "../models/Mobile.js";
 const userMobilesController = Router();
 
 userMobilesController.get('/', isAuth, (req, res) => {
-    res.render('userMobiles')
+    res.render('userMobiles', { user: req.user });
 });
 
 userMobilesController.post('/', isAuth, async (req, res) => {
     try {
         const { username } = req.body;
 
-        const user = await User.findOne({ username });
+        const searchedUser = await User.findOne({ username });
 
-        if (!user) {
+        if (!searchedUser) {
             return res.render('userMobiles', {
                 error: 'User not found',
-                user: null,
+                user: req.user,
+                searchedUser: null,
                 mobiles: [],
                 mobileCount: 0,
                 submittedUsername: username
@@ -33,7 +34,7 @@ userMobilesController.post('/', isAuth, async (req, res) => {
         const dateLimitStr = thirtyDaysAgo.toISOString().split('T')[0];
 
         const mobiles = await Mobile.find({
-            creator: user._id,
+            creator: searchedUser._id,
             date: { $gte: dateLimitStr }
         }).sort({ date: -1 });
 
@@ -47,7 +48,8 @@ userMobilesController.post('/', isAuth, async (req, res) => {
         }, 0);
 
         res.render('userMobiles', {
-            user,
+            user: req.user, // Logged-in user
+            searchedUser,
             mobiles,
             mobileCount: totalMobileCount,
             submittedUsername: username
@@ -56,12 +58,14 @@ userMobilesController.post('/', isAuth, async (req, res) => {
     } catch (err) {
         res.render('userMobiles', {
             error: getErrorMessage(err),
-            user: null,
+            user: req.user,
+            searchedUser: null,
             mobiles: [],
             mobileCount: 0,
             submittedUsername: username
         });
     }
 });
+
 
 export default userMobilesController;
