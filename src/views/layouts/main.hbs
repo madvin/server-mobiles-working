@@ -7,11 +7,6 @@
     <link href="/static/css/style.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-       {{#if error}}
-        <div class="error-container">
-            <p>{{error}}</p>
-        </div>
-        {{/if}}
 <nav>
   <div class="nav-clock"> <span id="live-clock"></span></div>
   <ul class="nav-links">
@@ -29,8 +24,14 @@
   </ul>
 </nav>
     <main class="main">
+             {{#if error}}
+        <div class="error-container">
+            <p>{{error}}</p>
+        </div>
+        {{/if}}
         {{{body}}}
     </main>
+
 
 </body>
 
