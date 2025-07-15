@@ -18,7 +18,7 @@ export default {
         const user = await User.findOne({ username });
         
         if (!user) {
-            throw new Error ('Invalid username or passowrd');
+            throw new Error ('Invalid username or password');
         }
 
         const isValid = await bcrypt.compare(password, user.password);
