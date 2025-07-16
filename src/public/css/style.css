@@ -13,6 +13,7 @@ body {
 }
 
 /* Navigation */
+/* Navigation */
 nav {
     background-color: #1565c0;
     position: fixed;
@@ -27,6 +28,16 @@ nav {
     padding: 12px 24px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     z-index: 1000;
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-center {
+    flex-grow: 1;
+    justify-content: center;
 }
 
 .nav-links {
@@ -52,14 +63,14 @@ nav {
     color: #ffffff;
     font-weight: bold;
     font-size: 18px;
-    margin-left: auto;
 }
 
 .user-info {
     list-style: none;
-    margin-left: 20px;
     font-weight: bold;
     color: #ffffff;
+    margin-left: 20px;
+    padding-right: 24px;    
 }
 
 /* Main Content */
