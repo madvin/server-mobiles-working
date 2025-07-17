@@ -1,0 +1,35 @@
+.section.banner .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.section.banner header h3 {
+    font-size: var(--fs-heading-4);
+    opacity: 0.6;
+}
+
+.section.banner .media {
+    flex: 0 0 30ch;
+    background: #eee;
+    border-radius: 0.3em;
+    border: 1px solid #CCC;
+    aspect-ratio: 1;
+    overflow: hidden;
+    order: -1;
+}
+
+.section.banner .media img {
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (width > 650px) {
+    .section.banner .inner {
+        flex-direction: row;
+    }
+
+    .section.banner .media {
+        order: initial;
+    }
+}

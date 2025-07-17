@@ -1,0 +1,10 @@
+:root {
+  --fs-body: clamp(0.75rem, 0.6667rem + 0.4167vw, 1rem);
+
+  --fs-heading-6: clamp(0.8438rem, 0.725rem + 0.5938vw, 1.2rem);
+  --fs-heading-5: clamp(0.9492rem, 0.7856rem + 0.818vw, 1.44rem);
+  --fs-heading-4: clamp(1.0679rem, 0.8478rem + 1.1002vw, 1.728rem);
+  --fs-heading-3: clamp(1.2014rem, 0.9106rem + 1.4537vw, 2.0736rem);
+  --fs-heading-2: clamp(1.3515rem, 0.9726rem + 1.8947vw, 2.4883rem);
+  --fs-heading-1: clamp(1.5205rem, 1.032rem + 2.4425vw, 2.986rem);
+}

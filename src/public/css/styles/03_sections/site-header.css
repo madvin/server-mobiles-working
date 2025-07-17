@@ -1,0 +1,42 @@
+.section.site-header {
+
+}
+
+.section.site-header .inner {
+    display: flex;
+    align-items: center;
+}
+
+.section.site-header .site-title {
+    /* margin-right: auto; */
+}
+
+.section.site-header .site-title a {
+    text-decoration: none;
+    color: purple;
+    font-size: var(--fs-heading-4);
+    font-weight: bold;
+}
+
+.section.site-header nav {
+    margin: 0 auto;
+}
+
+.section.site-header nav ul {
+    display: flex;
+    gap: 1em;
+}
+
+.section.site-header nav li {
+    display: block;
+    padding: 0;
+}
+
+.section.site-header nav a {
+    display: block;
+    padding: 0.5em 1em;
+    background: #EEE;
+    border-radius: 0.3em;
+    text-decoration: none;
+    color: #666;
+}

@@ -1,0 +1,4 @@
+body {
+    padding: var(--fs-heading-1);
+    background: #eee;
+}
