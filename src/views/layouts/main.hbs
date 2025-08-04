@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
-    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
-    <link rel="icon" href="/static/favicon.ico">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+  <link rel="shortcut icon" href="/static/favicon.ico">
 </head>
-<body>
-<nav>
-  <div class="nav-left">
-    <div class="nav-clock">
-      <span id="live-clock"></span>
-    </div>
-  </div>
 
-  <div class="nav-center">
-    <ul class="nav-links">
-      {{#if user}}
+<body>
+  <nav>
+    <div class="nav-left">
+      <div class="nav-clock">
+        <span id="live-clock"></span>
+      </div>
+    </div>
+
+    <div class="nav-center">
+      <ul class="nav-links">
+        {{#if user}}
         <li><a href="/">Table</a></li>
         <li><a href="/mobiles/create">Create</a></li>
         <li><a href="/creators">Users</a></li>
         <li><a href="/auth/register">Register</a></li>
         <li><a href="/usermobiles">User Mobiles</a></li>
         <li><a href="/auth/logout">Logout</a></li>
-      {{/if}}
-    </ul>
-  </div>
+        {{/if}}
+      </ul>
+    </div>
 
-  <div class="nav-right">
-    {{#if user}}
+    <div class="nav-right">
+      {{#if user}}
       <div class="user-info">
         Hello, {{user.username}}
       </div>
-    {{/if}}
-  </div>
-</nav>
+      {{/if}}
+    </div>
+  </nav>
 
-    <main class="main">
-             {{#if error}}
-        <div class="error-container">
-            <p>{{error}}</p>
-        </div>
-        {{/if}}
-        {{{body}}}
-    </main>
+  <main class="main">
+    {{#if error}}
+    <div class="error-container">
+      <p>{{error}}</p>
+    </div>
+    {{/if}}
+    {{{body}}}
+  </main>
 
 
 </body>
