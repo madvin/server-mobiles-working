@@ -12,8 +12,6 @@ body {
     text-align: center;
 }
 
-/* Navigation */
-/* Navigation */
 nav {
     background-color: #1565c0;
     position: fixed;
@@ -73,14 +71,12 @@ nav {
     padding-right: 40px;    
 }
 
-/* Main Content */
 main {
     flex: 1;
     padding-top: 90px;
     padding-bottom: 80px;
 }
 
-/* Error Message */
 .error-container {
     background-color: #e53935;
     color: #ffffff;
@@ -97,7 +93,6 @@ main {
     justify-content: center;
 }
 
-/* Table */
 table {
     width: 90%;
     margin: 30px auto;
@@ -121,7 +116,6 @@ th {
     font-weight: 700;
 }
 
-/* Buttons */
 button {
     background-color: #1976d2;
     color: white;
@@ -137,7 +131,6 @@ button:hover {
     background-color: #0d47a1;
 }
 
-/* Inputs */
 input {
     padding: 10px;
     margin: 8px;
@@ -147,7 +140,6 @@ input {
     font-size: 1rem;
 }
 
-/* Footer */
 .footer {
     background: #1565c0;
     color: white;
@@ -157,7 +149,6 @@ input {
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Misc Layout */
 .mobiles-item {
     display: flex;
     flex-wrap: wrap;
@@ -165,7 +156,6 @@ input {
     justify-content: center;
 }
 
-/* Responsive Design */
 @media (max-width: 600px) {
     nav {
         flex-direction: column;
