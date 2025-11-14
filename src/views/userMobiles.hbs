@@ -11,6 +11,15 @@
         required
         value="{{submittedUsername}}"
     >
+    <label for="daysCount">Days count:</label>
+    <input 
+    type="number"
+    id="daysCount"
+    name="daysCount"
+    required
+    value="{{submittedDaysCount}}"
+    min="1"
+    >
     <button type="submit">Check</button>
 </form>
 
@@ -20,7 +29,7 @@
 
 {{#if searchedUser}}
     <h2>Mobiles for {{searchedUser.username}}</h2>
-    <h2>Total mobiles in last 30 days: <strong>{{mobileCount}}</strong></h2>
+    <h2>Total mobiles in last {{submittedDaysCount}} days: <strong>{{mobileCount}}</strong></h2>
 
     
     {{!-- {{#each mobiles}}

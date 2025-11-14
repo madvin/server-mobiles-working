@@ -8,12 +8,14 @@ import Mobile from "../models/Mobile.js";
 const userMobilesController = Router();
 
 userMobilesController.get('/', isAuth, (req, res) => {
-    res.render('userMobiles', { user: req.user });
+    res.render('userMobiles', { user: req.user, submittedDdaysCount: 31 });
 });
 
 userMobilesController.post('/', isAuth, async (req, res) => {
     try {
         const { username } = req.body;
+        let daysCount = parseInt(req.body.daysCount) || 31;
+        if (daysCount < 1) daysCount = 1;
 
         const searchedUser = await User.findOne({ username });
 
@@ -29,9 +31,10 @@ userMobilesController.post('/', isAuth, async (req, res) => {
         }
 
         const today = new Date();
-        const thirtyDaysAgo = new Date(today);
-        thirtyDaysAgo.setDate(today.getDate() - 30);
-        const dateLimitStr = thirtyDaysAgo.toISOString().split('T')[0];
+        const daysAgo = new Date(today);
+        daysAgo.setDate(today.getDate() - daysCount);
+
+        const dateLimitStr = daysAgo.toISOString().split('T')[0];
 
         const mobiles = await Mobile.find({
             creator: searchedUser._id,
@@ -48,11 +51,12 @@ userMobilesController.post('/', isAuth, async (req, res) => {
         }, 0);
 
         res.render('userMobiles', {
-            user: req.user, // Logged-in user
+            user: req.user, 
             searchedUser,
             mobiles,
             mobileCount: totalMobileCount,
-            submittedUsername: username
+            submittedUsername: username,
+            submittedDaysCount: daysCount
         });
 
     } catch (err) {
@@ -62,7 +66,8 @@ userMobilesController.post('/', isAuth, async (req, res) => {
             searchedUser: null,
             mobiles: [],
             mobileCount: 0,
-            submittedUsername: username
+            submittedUsername: username,
+            submittedDaysCount: daysCount
         });
     }
 });
