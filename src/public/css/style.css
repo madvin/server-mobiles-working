@@ -5,7 +5,8 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f4f8;
+    background-image: url('../pictures/png-klev-club-btwd-p-malenkie-snezhinki-png-5.png');
+    /* background-color: #f0f4f8; */
     color: #0d47a1;
     margin: 0;
     padding: 0;
