@@ -5,7 +5,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    font-family: "Schibsted Grotesk", sans-serif;
     background-image: url('../pictures/png-klev-club-btwd-p-malenkie-snezhinki-png-5.png');
     /* background-color: #f0f4f8; */
     color: #0d47a1;
